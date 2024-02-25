@@ -1,17 +1,15 @@
-import {useEffect} from "react";
-import {fetchProducts} from "../../store/reducers/ActionCreators.ts";
+import {useAppSelector} from "../../hooks/redux.ts";
 
-interface IProductsContainer {
-  list: string[]
-}
-export const ProductsContainer = (list: IProductsContainer) => {
-  useEffect(() => {
-    dispatch(fetchProducts({action: 'get_ids'}))
-  }, [])
-
+export const ProductsContainer = () => {
+  const {pageProducts} = useAppSelector(state => state.productReducer)
+  console.log(pageProducts)
   return (
-    <>
-
-    </>
+    <div className="products">
+      <ul className="products__list">
+      {/*  {pageProducts && pageProducts.length > 0 && pageProducts.map((item) => (*/}
+      {/*    <li key={item.id} className=>{item.product}</li>*/}
+      {/*  ))}*/}
+      </ul>
+    </div>
   );
 };

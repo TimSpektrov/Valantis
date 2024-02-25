@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "./hooks/redux.ts";
 import {useEffect} from "react";
-import {fetchProducts} from "./store/reducers/ActionCreators.ts";
+import {fetchProductsIds} from "./store/reducers/ActionCreators.ts";
 import './assets/global.scss'
 import Preloader from "./components/Preloader/Preloader.tsx";
 import Error from "./components/Error/Error.tsx";
@@ -11,7 +11,7 @@ function App() {
   const {products, isLoading, error} = useAppSelector(state => state.productReducer)
 
   useEffect(() => {
-    dispatch(fetchProducts({action: 'get_ids'}))
+    dispatch(fetchProductsIds({action: 'get_ids'}))
   }, [])
   return (
     <div className='container'>
@@ -19,7 +19,7 @@ function App() {
         <Preloader /> :
         error ?
         <Error /> :
-          <ProductsContainer list={products} />
+          <ProductsContainer list={products.slice(0,50)} />
       }
     </div>
   )

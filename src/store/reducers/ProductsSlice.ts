@@ -1,18 +1,23 @@
 import {IProduct} from "../../types/IProduct.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface ProductsState {
+interface IProductItem {
+  [key: string]: any;
+}
+interface IProductsState {
   products: string[];
   isLoading: boolean;
   error: string
   length: number
+  pageProducts: IProductItem[]
 }
 
-const initialState: ProductsState = {
+const initialState: IProductsState = {
   products: [],
   isLoading: false,
   error: '',
   length: 0,
+  pageProducts: [],
 }
 
 export const productsSlice = createSlice({
@@ -29,6 +34,12 @@ export const productsSlice = createSlice({
       state.error = '';
       state.products = action.payload;
       state.length = action.payload.length;
+    },
+    pageProductsFetchingSuccess(state, action: PayloadAction<IProductItem[]>) {
+      console.log('pageProducts', action.payload)
+      state.isLoading = false;
+      state.error = '';
+      state.pageProducts = action.payload;
     },
     productsFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
