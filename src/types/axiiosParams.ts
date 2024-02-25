@@ -9,7 +9,7 @@ interface IAxiosParamsFilter {
 
 interface IAxiosParamsGetIds {
   action: 'get_ids';
-  params: {
+  params?: {
     offset?: number;
     limit?: number;
   }
