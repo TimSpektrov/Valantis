@@ -7,9 +7,10 @@ interface IProductItem {
 interface IProductsState {
   products: string[];
   isLoading: boolean;
-  error: string
-  length: number
-  pageProducts: IProductItem[]
+  error: string;
+  length: number;
+  pageProducts: IProductItem[];
+  paginationCount: number;
 }
 
 const initialState: IProductsState = {
@@ -18,6 +19,7 @@ const initialState: IProductsState = {
   error: '',
   length: 0,
   pageProducts: [],
+  paginationCount: 1,
 }
 
 export const productsSlice = createSlice({
@@ -36,7 +38,8 @@ export const productsSlice = createSlice({
       state.length = action.payload.length;
     },
     pageProductsFetchingSuccess(state, action: PayloadAction<IProductItem[]>) {
-      console.log('pageProducts', action.payload)
+      console.log(action.payload)
+
       state.isLoading = false;
       state.error = '';
       state.pageProducts = action.payload;
@@ -45,6 +48,17 @@ export const productsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    setPaginationCount(state, action: PayloadAction<number>) {
+      console.log(action.payload)
+      // if(action.payload < 1) {
+      //   state.paginationCount = 1
+      // } else if(action.payload > Math.ceil(state.length / 50)) {
+      //   state.paginationCount = Math.ceil(state.length / 50)
+      // } else {
+        state.paginationCount = action.payload;
+
+      // }
+    }
   }
 })
 

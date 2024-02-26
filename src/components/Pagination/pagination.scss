@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+  &__button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+    &.btn-first {
+      background-image: url(../../assets/svg/arrow2.svg);
+    }
+    &.btn-prev {
+      background-image: url(../../assets/svg/arrow.svg);
+    }
+    &.btn-next {
+      background-image: url(../../assets/svg/arrow.svg);
+    }
+    &.btn-last {
+      background-image: url(../../assets/svg/arrow2.svg);
+    }
+    &.btn-first,
+    &.btn-last {
+      background-size: 15px;
+    }
+    &.btn-prev,
+    &.btn-next{
+      background-size: 8px
+    }
+    &.btn-first,
+    &.btn-prev {
+      scale: -1;
+    }
+  }
+  &__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+}

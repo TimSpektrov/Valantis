@@ -1,0 +1,32 @@
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 30px 15px;
+  border-radius: 10px;
+  border: 1px solid #888;
+  background-color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+  &.card_brand {
+    box-shadow: 5px 5px 5px rgba(220, 238, 0, .2);
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 1em;
+  }
+  &__price {
+    color: #061638;
+  }
+  &__brand {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    rotate: 10deg;
+  }
+}
