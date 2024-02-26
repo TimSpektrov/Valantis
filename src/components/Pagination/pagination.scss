@@ -12,8 +12,17 @@
     background-color: transparent;
     background-position: center center;
     background-repeat: no-repeat;
-
     cursor: pointer;
+    transition: opacity .2s, background-color .2s;
+    &:hover,
+    &:focus {
+      background-color: #bbb;
+    }
+    &[disabled] {
+      opacity: .5;
+      cursor: auto;
+      background-color: transparent;
+    }
     &.btn-first {
       background-image: url(../../assets/svg/arrow2.svg);
     }

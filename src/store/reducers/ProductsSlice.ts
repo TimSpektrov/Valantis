@@ -1,5 +1,4 @@
-import {IProduct} from "../../types/IProduct.ts";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction, Slice} from "@reduxjs/toolkit";
 
 interface IProductItem {
   [key: string]: any;
@@ -8,34 +7,34 @@ interface IProductsState {
   products: string[];
   isLoading: boolean;
   error: string;
-  length: number;
+  lastPage: number;
   pageProducts: IProductItem[];
-  paginationCount: number;
+  currentPage: number;
 }
 
 const initialState: IProductsState = {
   products: [],
   isLoading: false,
   error: '',
-  length: 0,
+  lastPage: 0,
   pageProducts: [],
-  paginationCount: 1,
+  currentPage: 1,
 }
 
-export const productsSlice = createSlice({
+export const productsSlice: Slice = createSlice({
   name: 'products',
   initialState,
   reducers: {
     productsFetching(state) {
       state.isLoading = true;
       state.error = '';
-      state.length = 0
     },
-    productsFetchingSuccess(state, action: PayloadAction<str[]>) {
+    productsIdsFetchingSuccess(state, action: PayloadAction<string[]>) {
+      // console.log(action.payload.length / 50)
       state.isLoading = false;
       state.error = '';
       state.products = action.payload;
-      state.length = action.payload.length;
+      state.lastPage = action.payload.length / 50;
     },
     pageProductsFetchingSuccess(state, action: PayloadAction<IProductItem[]>) {
       console.log(action.payload)
@@ -49,13 +48,13 @@ export const productsSlice = createSlice({
       state.error = action.payload;
     },
     setPaginationCount(state, action: PayloadAction<number>) {
-      console.log(action.payload)
+      console.log('setCount', action.payload)
       // if(action.payload < 1) {
       //   state.paginationCount = 1
       // } else if(action.payload > Math.ceil(state.length / 50)) {
       //   state.paginationCount = Math.ceil(state.length / 50)
       // } else {
-        state.paginationCount = action.payload;
+        state.currentPage = action.payload;
 
       // }
     }

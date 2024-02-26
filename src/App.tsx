@@ -8,7 +8,7 @@ import {ProductsContainer} from "./components/ProductsContainer/ProductsContaine
 
 function App() {
   const dispatch = useAppDispatch()
-  const {products, isLoading, error} = useAppSelector(state => state.productReducer)
+  const {isLoading, error} = useAppSelector(state => state.productReducer)
 
   useEffect(() => {
     dispatch(fetchProductsIds({action: 'get_ids'}))
@@ -19,7 +19,7 @@ function App() {
         <Preloader /> :
         error ?
         <Error /> :
-          <ProductsContainer list={products.slice(0,50)} />
+          <ProductsContainer />
       }
     </div>
   )

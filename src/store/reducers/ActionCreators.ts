@@ -27,7 +27,7 @@ export const fetchProductsIds = (params: AxiosParams) => async (dispatch: AppDis
   try {
     dispatch(productsSlice.actions.productsFetching())
     const response = await requestProducts(params)
-    dispatch(productsSlice.actions.productsFetchingSuccess(removeDuplicatesId(response.data.result)))
+    dispatch(productsSlice.actions.productsIdsFetchingSuccess(removeDuplicatesId(response.data.result)))
 
     dispatch(fetchProductsItems({action: 'get_items', params: {ids: response.data.result.slice(0,50)}}))
   } catch (e: Error) {
@@ -45,7 +45,7 @@ export const fetchProductsItems = (params: AxiosParams) => async (dispatch: AppD
     const response = await requestProducts(params)
 
     dispatch(productsSlice.actions.pageProductsFetchingSuccess(removeDuplicatesProducts(response.data.result)))
-  } catch (e: Error) {
+  } catch (e: unknown) {
     dispatch(productsSlice.actions.productsFetchingError('Ошибка получения данных'))
     console.log('ошибка получения данных страницы')
     dispatch(fetchProductsItems(params))

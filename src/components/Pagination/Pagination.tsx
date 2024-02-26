@@ -1,45 +1,45 @@
-import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 import './pagination.scss'
-import {fetchProductsItems} from "../../store/reducers/ActionCreators.ts";
+// import {fetchProductsItems} from "../../store/reducers/ActionCreators.ts";
 import {productsSlice} from "../../store/reducers/ProductsSlice.ts";
+import {fetchProductsItems} from "../../store/reducers/ActionCreators.ts";
 
 const Pagination = () => {
   const dispatch = useAppDispatch()
-  const {paginationCount, length, products} = useAppSelector(state => state.productReducer)
-  console.log(length)
-  const handleClick = (e) => {
-    console.log(e)
-    dispatch(productsSlice.actions.setPaginationCount(paginationCount + e))
+  const {currentPage, lastPage, products} = useAppSelector(state => state.productReducer)
+  const handleClick = (e:number) => {
+    console.log('currentPage', e)
+    dispatch(productsSlice.actions.setPaginationCount(e))
+    console.log(`action: 'get_items', params: {ids: ${products.slice(((e - 1) * 50),e * 50)}}`)
     dispatch(fetchProductsItems({
-      action: 'get_items', params: {ids: products.slice(((paginationCount + e - 1) * 50),(paginationCount + e) * 50)}
+      action: 'get_items', params: {ids: products.slice(((e - 1) * 50),e * 50)}
     }))
   }
   return (
     <div className="pagination">
       <button
         className="pagination__button btn-first"
-        // disabled={paginationCount === 1}
+        disabled={currentPage === 1}
         onClick={() =>handleClick( 1)}
       ></button>
       <button
         className="pagination__button btn-prev"
-        // disabled={paginationCount === 1}
-        onClick={() =>handleClick(paginationCount - 1)}
+        disabled={currentPage === 1}
+        onClick={() =>handleClick(currentPage - 1)}
       ></button>
       <div
         className="pagination__button pagination__page"
 
-      >{paginationCount}</div>
+      >{currentPage}</div>
       <button
         className="pagination__button btn-next"
-        // disabled={paginationCount === Math.ceil(length / 50)}
-        onClick={() =>handleClick( paginationCount + 1)}
+        disabled={currentPage === lastPage}
+        onClick={() =>handleClick( currentPage + 1)}
       ></button>
       <button
         className="pagination__button btn-last"
-        // disabled={paginationCount === Math.ceil(length / 50)}
-        onClick={() =>handleClick( Math.ceil(length / 50))}
+        disabled={currentPage === lastPage}
+        onClick={() =>handleClick( lastPage)}
       ></button>
     </div>
   );
