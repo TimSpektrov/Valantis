@@ -28,7 +28,7 @@ export const fetchProductsIds =
   (params: AxiosParams) => async (dispatch: AppDispatch) => {
     const filtersRequest: string[][] = [];
     try {
-      dispatch(productsSlice.actions.productsFetching());
+      dispatch(productsSlice.actions.productsFetching(1));
       const response = await requestProducts(params);
       if (response?.status === 200) {
         dispatch(
@@ -56,7 +56,7 @@ export const fetchProductsIds =
         let minPrice = 0;
         let maxPrice = 0;
         response.forEach((resp) => {
-          if (resp?.status === "fulfilled") {
+          if (resp?.status === "fulfilled" && resp?.value?.data.result.length) {
             resp.value.data.result.forEach((item: IProduct) => {
               if (item.brand !== null && !brands.includes(item.brand)) {
                 brands.push(item.brand);
@@ -97,7 +97,7 @@ export const fetchProductsIds =
 export const fetchProductsItems =
   (params: AxiosParams) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(productsSlice.actions.productsFetching());
+      dispatch(productsSlice.actions.productsFetching(1));
       const response = await requestProducts(params);
       if (response?.status === 200) {
         dispatch(
