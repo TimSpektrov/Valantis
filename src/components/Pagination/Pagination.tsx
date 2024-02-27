@@ -8,9 +8,7 @@ const Pagination = () => {
   const dispatch = useAppDispatch()
   const {currentPage, lastPage, products} = useAppSelector(state => state.productReducer)
   const handleClick = (e:number) => {
-    console.log('currentPage', e)
     dispatch(productsSlice.actions.setPaginationCount(e))
-    console.log(`action: 'get_items', params: {ids: ${products.slice(((e - 1) * 50),e * 50)}}`)
     dispatch(fetchProductsItems({
       action: 'get_items', params: {ids: products.slice(((e - 1) * 50),e * 50)}
     }))

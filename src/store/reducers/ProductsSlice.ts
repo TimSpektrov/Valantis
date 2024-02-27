@@ -10,6 +10,12 @@ interface IProductsState {
   lastPage: number;
   pageProducts: IProductItem[];
   currentPage: number;
+  pages: IProductItem[][];
+  filters: {
+    brands: string[],
+    minPrice: number,
+    maxPrice: number,
+  }
 }
 
 const initialState: IProductsState = {
@@ -18,7 +24,13 @@ const initialState: IProductsState = {
   error: '',
   lastPage: 0,
   pageProducts: [],
+  pages: [],
   currentPage: 1,
+  filters: {
+    brands: [],
+    minPrice: 0,
+    maxPrice: 0,
+  }
 }
 
 export const productsSlice: Slice = createSlice({
@@ -37,8 +49,6 @@ export const productsSlice: Slice = createSlice({
       state.lastPage = action.payload.length / 50;
     },
     pageProductsFetchingSuccess(state, action: PayloadAction<IProductItem[]>) {
-      console.log(action.payload)
-
       state.isLoading = false;
       state.error = '';
       state.pageProducts = action.payload;
@@ -48,16 +58,11 @@ export const productsSlice: Slice = createSlice({
       state.error = action.payload;
     },
     setPaginationCount(state, action: PayloadAction<number>) {
-      console.log('setCount', action.payload)
-      // if(action.payload < 1) {
-      //   state.paginationCount = 1
-      // } else if(action.payload > Math.ceil(state.length / 50)) {
-      //   state.paginationCount = Math.ceil(state.length / 50)
-      // } else {
-        state.currentPage = action.payload;
-
-      // }
-    }
+      state.currentPage = action.payload;
+    },
+    setFilter(state, action: PayloadAction) {
+      state.filters = action.payload;
+    },
   }
 })
 

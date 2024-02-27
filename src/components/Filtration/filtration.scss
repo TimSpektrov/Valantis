@@ -1,0 +1,59 @@
+.filtration {
+  padding: 30px 5%;
+  &__container {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+
+  .brands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .price {
+    &__minmax {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-item {
+        font-weight: 700;
+      }
+    }
+    &__range {
+      width: 100%;
+      cursor: pointer;
+    }
+    &__current-price {
+      width: 100%;
+      border: none;
+      text-align: center;
+      text-shadow: 2px 4px 1px rgba(6, 22, 56, .3);
+      font-size: 18px;
+      border-bottom: 1px solid #061638;
+      transition: border-color .2s;
+      &:hover,
+      &:focus {
+        outline: none;
+        border-color: darkorange;
+      }
+    }
+  }
+  .name {
+    &__input {
+      width: 100%;
+      border: none;
+      text-align: center;
+      text-shadow: 2px 4px 1px rgba(6, 22, 56, .3);
+      font-size: 18px;
+      border-bottom: 1px solid #061638;
+      transition: border-color .2s;
+      &:hover,
+      &:focus {
+        outline: none;
+        border-color: darkorange;
+      }
+    }
+  }
+}
