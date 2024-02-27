@@ -1,7 +1,6 @@
 .products {
   width: 100%;
   padding: 5%;
-  //background-color: #e0d0d0;
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

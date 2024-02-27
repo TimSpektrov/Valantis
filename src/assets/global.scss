@@ -1,3 +1,4 @@
+@import "src/assets/fonts/stylesheet";
 * {
   padding: 0;
   margin: 0;
@@ -5,6 +6,31 @@
   font-family: 'Arial', serif;
 }
 
+:root {
+  --colorPrimary: #cb1829;
+  --colorSecondary: #FF8800;
+  --colorBlackSecondary: #395680;
+  --colorBlack: #280505;
+  --colorWhite: #fff;
+  --colorGrayLight: #bbb;
+  --colorGray: #888;
+}
+
 button {
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: var(--colorBlack)
 }

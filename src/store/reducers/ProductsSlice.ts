@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction, Slice} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 
 interface IProductItem {
   [key: string]: any;
@@ -12,16 +12,16 @@ interface IProductsState {
   currentPage: number;
   pages: IProductItem[][];
   filters: {
-    brands: string[],
-    minPrice: number,
-    maxPrice: number,
-  }
+    brands: string[];
+    minPrice: number;
+    maxPrice: number;
+  };
 }
 
 const initialState: IProductsState = {
   products: [],
   isLoading: false,
-  error: '',
+  error: "",
   lastPage: 0,
   pageProducts: [],
   pages: [],
@@ -30,27 +30,28 @@ const initialState: IProductsState = {
     brands: [],
     minPrice: 0,
     maxPrice: 0,
-  }
-}
+  },
+};
 
 export const productsSlice: Slice = createSlice({
-  name: 'products',
+  name: "products",
   initialState,
   reducers: {
     productsFetching(state) {
       state.isLoading = true;
-      state.error = '';
+      state.error = "";
     },
     productsIdsFetchingSuccess(state, action: PayloadAction<string[]>) {
       // console.log(action.payload.length / 50)
       state.isLoading = false;
-      state.error = '';
+      state.error = "";
       state.products = action.payload;
-      state.lastPage = action.payload.length / 50;
+      state.lastPage = Math.ceil(action.payload.length / 50);
+      state.currentPage = 1;
     },
     pageProductsFetchingSuccess(state, action: PayloadAction<IProductItem[]>) {
       state.isLoading = false;
-      state.error = '';
+      state.error = "";
       state.pageProducts = action.payload;
     },
     productsFetchingError(state, action: PayloadAction<string>) {
@@ -63,7 +64,7 @@ export const productsSlice: Slice = createSlice({
     setFilter(state, action: PayloadAction) {
       state.filters = action.payload;
     },
-  }
-})
+  },
+});
 
-export default productsSlice.reducer
+export default productsSlice.reducer;

@@ -2,15 +2,33 @@
   padding: 30px 5%;
   &__container {
 
+  }
+  &__filters {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 30px;
   }
-
   .brands {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    align-items: flex-start;
+    &__btn {
+      background-color: var(--colorBlackSecondary);
+      color: var(--colorWhite);
+      border: 1px solid var(--colorBlackSecondary);
+      padding: 3px  6px;
+      border-radius: 6px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all .2s;
+      &:hover {
+        opacity: .8;
+      }
+      &:focus {
+        border-color: var(--colorSecondary);
+      }
+    }
   }
   .price {
     &__minmax {
@@ -31,12 +49,13 @@
       text-align: center;
       text-shadow: 2px 4px 1px rgba(6, 22, 56, .3);
       font-size: 18px;
-      border-bottom: 1px solid #061638;
-      transition: border-color .2s;
+      border-bottom: 1px solid var(--colorBlackSecondary);
+      margin-bottom: 20px;
+      transition: all .2s;
       &:hover,
       &:focus {
         outline: none;
-        border-color: darkorange;
+        border-color: var(--colorSecondary);
       }
     }
   }
@@ -47,13 +66,36 @@
       text-align: center;
       text-shadow: 2px 4px 1px rgba(6, 22, 56, .3);
       font-size: 18px;
-      border-bottom: 1px solid #061638;
-      transition: border-color .2s;
+      border-bottom: 1px solid var(--colorBlackSecondary);
+      margin-bottom: 20px;
+      transition: all .2s;
       &:hover,
       &:focus {
         outline: none;
-        border-color: darkorange;
+        border-color: var(--colorSecondary);
       }
+    }
+  }
+  &__submit-container {
+    text-align: right;
+  }
+  &__submit {
+    padding: 1em 4em;
+    background-color: #fff;
+    color: var(--colorBlackSecondary);
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+    transition: all .2s;
+
+    &:hover {
+      opacity: .8;
+    }
+    &:focus {
+      color: var(--colorPrimary);
     }
   }
 }
