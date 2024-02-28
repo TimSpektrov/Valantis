@@ -1,1 +1,1 @@
-# https://timspektrov.github.io/valantis/
+# https://timspektrov.github.io/Valantis/
